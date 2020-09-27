@@ -1,0 +1,8 @@
+django
+djangorestframework
+jsonfield
+celery
+redis
+sh
+django-crispy-forms
+psycopg2
