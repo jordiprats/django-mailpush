@@ -1,1 +1,1 @@
-# django-epiales
+# django-mailpush
