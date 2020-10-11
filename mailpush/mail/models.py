@@ -14,6 +14,7 @@ class User(AbstractUser):
         unique=True,
     )
     email = models.CharField(max_length=256)
+    pool = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.username, allow_unicode=False)
@@ -22,10 +23,15 @@ class User(AbstractUser):
     def __str__(self):
         return self.email
 
+class Token(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+
+    subscription = models.ForeignKey(User, on_delete=models.CASCADE, related_name='tokens')
+
 class Mail(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
-    subscription = models.ForeignKey(User, on_delete=models.CASCADE, related_name='delegatsclasses')
+    subscription = models.ForeignKey(User, on_delete=models.CASCADE, related_name='mails')
 
     from = models.EmailField(max_length=256)
     to = models.EmailField(max_length=256)
