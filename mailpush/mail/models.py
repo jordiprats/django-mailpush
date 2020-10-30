@@ -49,6 +49,7 @@ class Mail(models.Model):
 
     subscription = models.ForeignKey(User, on_delete=models.CASCADE, related_name='mails')
 
+
     mail_from = models.EmailField(max_length=256)
     mail_to = models.EmailField(max_length=256)
     mail_bcc = models.EmailField(max_length=256)
